@@ -14,7 +14,6 @@ function findResources(projectsId) {
     return db("projects_resources as pr")
     .join("projects as p", "p.projectsId", "pr.projects_id")
     .join("resources as r", "r.resourcesId", "pr.resources_id")
-    .join("tasks as t", "t.tasksId", "p.tasks_id")
     .where("p.projectsId", projectsId)
     .select(
         "p.projectsId",
