@@ -24,7 +24,7 @@ function findResources(projectsId) {
     )
 }
 
-function findResources(projectsId) {
+function findTasks(projectsId) {
     return db("projects_tasks as pt")
     .join("projects as p", "p.projectsId", "pt.projects_id")
     .join("resources as r", "r.resourcesId", "pt.resources_id")
@@ -36,4 +36,11 @@ function findResources(projectsId) {
         "r.resourcesName as Resource",
         "t.tasksName as Task"
     )
+}
+
+module.exports = {
+    find,
+    findById,
+    findResources,
+    findTasks
 }
