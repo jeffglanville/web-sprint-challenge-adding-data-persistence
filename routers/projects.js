@@ -44,4 +44,15 @@ router.get("/projects/:id/tasks", async (req, res, next) => {
     }
 })
 
+router.post("/projects", async (req, res, next) => {
+	try{
+		const [id] = await db("project").insert(req.body)
+		const project = await db("projects").where({ id }).first()
+
+		res.status(200).json(project)
+	}catch(err) {
+		next(err)
+	}
+})
+
 module.exports = router
