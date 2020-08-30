@@ -38,17 +38,17 @@ exports.up = async function(knex) {
   //   table.primary(["projects_id", "resources_id"])
   // })
 
-  // await knex.schema.createTable("projects_tasks", (table) => {
-  //   table.integer("projects_id")
-  //       .notNull()
-  //       .references("projectsId")
-  //       .inTable("projects")
-  //   table.integer("tasks_id")
-  //       .notNull()
-  //       .references("tasksId")
-  //       .inTable("tasks")
-  //   table.primary(["projects_id", "tasks_id"])
-  // })
+  await knex.schema.createTable("projects_tasks", (table) => {
+    table.integer("projects_id")
+        .notNull()
+        .references("projectsId")
+        .inTable("projects")
+    table.integer("tasks_id")
+        .notNull()
+        .references("tasksId")
+        .inTable("tasks")
+    table.primary(["projects_id", "tasks_id"])
+  })
 };
 
 exports.down = async function(knex) {
