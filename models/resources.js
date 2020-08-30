@@ -1,16 +1,13 @@
 const db = require("../data/config")
 
 function find() {
-    return db("resources as r")
-    .join("projects as p", "p.projectsID")
-    .select("r.resourcesId", "p.name as Project")
+    return db("resources")
 }
 
 function findById(resourcesId) {
-    return db("resources as r")
-    .where("r.resourcesId", resourcesId)
-    .join("projects as p", "r.resourcesId")
-    .select("r.resourcesId", "r.name as Resource", "p.projectName as Projects")
+    return db("resources")
+    .where("resourcesId", resourcesId)
+    .first()
 }
 
 module.exports = {

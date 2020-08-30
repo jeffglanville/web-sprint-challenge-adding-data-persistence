@@ -1,4 +1,5 @@
 const express = require("express")
+const db = require("../data/config")
 const Task = require("../models/tasks")
 
 const router = express.Router()
@@ -29,8 +30,8 @@ router.get("/tasks/:id", async (req, res, next) => {
 
 router.post("/tasks", async (req, res, next) => {
 	try{
-		const [id] = await db("tasks").insert(req.body)
-		const task = await db("tasks").where({ id }).first()
+		const [tasksId] = await db("tasks").insert(req.body)
+		const task = await db("tasks").where({ tasksId }).first()
 
 		res.status(200).json(task)
 	}catch(err) {
