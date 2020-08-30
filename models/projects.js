@@ -12,34 +12,28 @@ function findById(id) {
 
 function findResources(projectsId) {
     return db("projects_resources as pr")
-    .join("projects as p", "p.projectsId")
-    .join("resources as r", "r.resourcesId")
+    .join("projects as p", "p.projectsId", "r.projects_id")
     .where("p.projectsId", projectsId)
     .select(
         "p.projectsId",
         "p.projectsName as Project",
         "r.resourcesName as Resource",
-        "t.tasksName as Task"
     )
 }
 
-function findTasks(projectsId) {
-    return db("projects_tasks as pt")
-    .join("projects as p", "p.projectsId")
-    .join("resources as r", "r.resourcesId")
-    .join("tasks as t", "t.tasksId")
-    .where("p.projectsId", projectsId)
-    .select(
-        "p.projectsId",
-        "p.projectsName as Project",
-        "r.resourcesName as Resource",
-        "t.tasksName as Task"
-    )
-}
+// function findTasks(projectsId) {
+//     return db("projects_tasks as pt")
+//     .join("projects as p", "p.projectsId", "p.tasks_id")
+//     .where("p.projectsId", projectsId)
+//     .select(
+//         "p.projectsId",
+//         "p.projectsName as Project",
+//         "t.tasksName as Task"
+//     )
+// }
 
 module.exports = {
     find,
     findById,
-    findResources,
-    findTasks
+    findResources
 }

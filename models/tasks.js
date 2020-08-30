@@ -6,8 +6,16 @@ function find() {
 
 function findById(tasksId) {
     return db("tasks")
-    .where("tasksId", tasksId)
-    .first()
+    .join("projects as p", "p.projectsId", "p.tasks_id")
+    .where("p.projectsId", projectsId)
+    .select(
+        "p.projectsId a ProjectsId",
+        "p.projectsName as Project",
+        "p.description as Description",
+        "t.tasksName as Task"
+    )
+    // .where("tasksId", tasksId)
+    // .first()
 }
 
 module.exports = {
