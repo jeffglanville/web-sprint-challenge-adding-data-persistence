@@ -12,8 +12,8 @@ function findById(id) {
 
 function findResources(projectsId) {
     return db("projects_resources as pr")
-    .join("projects as p", "p.projectsId", "pr.projects_id")
-    .join("resources as r", "r.resourcesId", "pr.resources_id")
+    .join("projects as p", "p.projectsId")
+    .join("resources as r", "r.resourcesId")
     .where("p.projectsId", projectsId)
     .select(
         "p.projectsId",
@@ -25,9 +25,9 @@ function findResources(projectsId) {
 
 function findTasks(projectsId) {
     return db("projects_tasks as pt")
-    .join("projects as p", "p.projectsId", "pt.projects_id")
-    .join("resources as r", "r.resourcesId", "pt.resources_id")
-    .join("tasks as t", "t.tasksId", "p.tasks_id")
+    .join("projects as p", "p.projectsId")
+    .join("resources as r", "r.resourcesId")
+    .join("tasks as t", "t.tasksId")
     .where("p.projectsId", projectsId)
     .select(
         "p.projectsId",
